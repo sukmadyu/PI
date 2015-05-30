@@ -1,0 +1,136 @@
+{% extends "main.html" %}
+{% block main %}
+    {% load staticfiles %}
+    <!-- Page Heading -->
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                Konsistensi Inputan Kriteria <!--<small>Statistics Overview</small>-->
+            </h1>
+            <ol class="breadcrumb">
+                <li class="active">
+                    <i class="fa fa-home"></i> <a href="{% url 'home' %}">Home</a>
+                </li>
+                <li>
+                    <i class="fa fa-user"></i> Menu
+                </li>
+                <li>
+                    <i class="fa fa-user"></i> <a href="{% url 'input-kri' %}"></a>Input Kriteria
+                </li>
+            </ol>
+        </div>
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-6">
+            <h2>Kriteria</h2>
+            <table border="1" class="table table-striped table-bordered">
+                <thead>
+                <tr style="text-align: right;">
+                    <th></th>
+                    <th>Harga</th>
+                    <th>Isi</th>
+                    <th>PAO</th>
+                    <th>Daya Tahan Produk</th>
+                    <th>Cruelty-Free</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th>Harga</th>
+                    <td> 1</td>
+                    <td> {{ kri_a }}</td>
+                    <td> {{ kri_b }}</td>
+                    <td> {{ kri_c }}</td>
+                    <td> {{ kri_d }}</td>                    
+                </tr>
+                <tr>
+                    <th>Isi</th>
+                    <td> 1/{{ kri_a }}</td>
+                    <td> 1</td>
+                    <td> {{ kri_e }}</td>
+                    <td> {{ kri_f }}</td>
+                    <td> {{ kri_g }}</td>
+                </tr>
+                <tr>
+                    <th>PAO</th>
+                    <td> 1/{{ kri_b }}</td>
+                    <td> 1/{{ kri_e }}</td>
+                    <td> 1</td>
+                    <td> {{ kri_h }}</td>
+                    <td> {{ kri_i }}</td>
+                </tr>
+                <tr>
+					<th>Daya Tahan Produk</th>
+					<td> 1/{{ kri_c }}</td>
+					<td> 1/{{ kri_f }}</td>
+					<td> {{ kri_h }}</td>
+					<td> 1</td>
+					<td> {{ kri_j }}</td>
+                </tr>
+                <tr>
+					<th>Cruelty-Free</th>
+					<td> 1/{{ kri_d }}</td>
+					<td> 1/{{ kri_g }}</td>
+					<td> 1/{{ kri_i }}</td>
+					<td> 1/{{ kri_j }}</td>
+					<td> 1</td>
+                </tr>
+                </tbody>
+            </table>
+            <h2>Bobot Kriteria</h2>
+            <table border="1" class="table table-striped table-bordered">
+
+                <tbody>
+                <tr>
+                    <th><strong>Bobot Harga</strong> :</th>
+                    <td><h5> {{ bobot_harga }}</h5></td>
+
+                </tr>
+                <tr>
+                    <th><strong>Bobot Isi</strong> :</th>
+                    <td><h5> {{ bobot_isi }}</h5></td>
+                    
+                </tr>
+                <tr>
+                    <th><strong>Bobot PAO</strong> :</th>
+                    <td><h5> {{ bobot_pao }}</h5></td>
+
+                </tr>
+                <tr>
+                    <th><strong>Bobot Daya Tahan Produk</strong> :</th>
+                    <td><h5> {{ bobot_time }}</h5></td>
+
+                </tr>
+                <tr>
+                    <th><strong>Bobot Cruelty-Free</strong> :</th>
+                    <td><h5> {{ bobot_cruelty_free }}</h5></td>
+
+                </tr>
+                </tbody>
+            </table>
+            <p>Konsistensi = {{ cons }} = {{ cons_pre }} %</p>
+
+        </div>
+
+    </div>
+{% if cons_pre <= 10 %}
+<div class="row">
+                    <div class="col-lg-1 col-lg-offset-6">
+						<a href="{% url 'input-ahp' alternatif.id%}"><button>Masukan Bobot Produk</button></a>
+                    </div>
+                </div>
+    {% else %}
+
+            <p>Konsistensi Lebih dari 10% tidak bisa dilakukan perhitungan</p>
+            <br>
+            <p>Mohon kembali isi perbandingan berpasangan kriteria</p>
+<div class="row">
+                    <div class="col-lg-1 col-lg-offset-6">
+						<a href="{% url 'input-kri'%}"><button>Masukan Nilai Perbandingan Kriteria</button></a>
+                    </div>
+                </div>            
+
+    {% endif %}
+{% endblock %}

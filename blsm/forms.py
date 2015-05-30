@@ -1,0 +1,83 @@
+from django import forms
+
+
+
+from .models import *
+
+class AHPForm(forms.ModelForm):
+
+    harga_a=forms.CharField(widget=forms.TextInput(attrs={'class':'form-control '}))
+    harga_b=forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
+    harga_c=forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
+    isi_a=forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
+    isi_b=forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
+    isi_c=forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
+    pao_a=forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
+    pao_b=forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
+    pao_c=forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
+    time_a=forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
+    time_b=forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
+    time_c=forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
+    cruelty_free_a=forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
+    cruelty_free_b=forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
+    cruelty_free_c=forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
+    class Meta:
+        model = Alternatif
+        fields = ('harga','isi','pao','time','cruelty_free')
+        widgets = {
+
+            'harga':forms.HiddenInput(),
+            'isi':forms.HiddenInput(),
+            'pao':forms.HiddenInput(),
+	    'time':forms.HiddenInput(),
+	    'cruelty_free':forms.HiddenInput(),
+        }
+class AHPKriteriaForm(forms.ModelForm):
+    PLANNING_CHOICES_WITH_TITLES = (
+        (1./9, 'Mutlak Tidak Lebih Penting (1/9)'),
+        (1./8, 'Diantara Sangat dan Mutlak Tidak Lebih Penting (1/8)'),
+        (1./7, 'Sangat Tidak Lebih Penting (1/7)'),
+        (1./6, 'Diantara Tidak Lebih dan Sangat Tidak Lebih Penting (1/6)'),
+        (1./5, 'Tidak Lebih Penting (1/5)'),
+        (1./4, 'Diantara Tidak Cukup dan Tidak Lebih Penting (1/4)'),
+        (1./3, 'Tidak Cukup Penting (1/3)'),
+        (1./2, 'Diantara Sama dan Tidak Cukup Penting(1/2)'),
+        (1, 'Sama Penting (1)'),
+        (2, 'Diantara Sama dan Cukup Penting (2)'),
+        (3, 'Cukup Penting (3)'),
+        (4, 'Diantara Cukup dan Lebih Penting (4)'),
+        (5, 'Lebih Penting (5)'),
+        (6, 'Diantara Lebih dan Sangat Lebih Penting (6)'),
+        (7, 'Sangat Lebih Penting (7)'),
+        (8, 'Diantara Sangat dan Mutlak Lebih Penting (8)'),
+        (9, 'Mutlak Lebih Penting (9)'),
+    )
+
+
+    kri_harga_isi=forms.ChoiceField(
+        required=True, choices=PLANNING_CHOICES_WITH_TITLES,widget=forms.Select(attrs={'class':'form-control '}))
+    kri_harga_pao=forms.ChoiceField(
+        required=True, choices=PLANNING_CHOICES_WITH_TITLES,widget=forms.Select(attrs={'class':'form-control '}))
+    kri_harga_time=forms.ChoiceField(
+        required=True, choices=PLANNING_CHOICES_WITH_TITLES,widget=forms.Select(attrs={'class':'form-control '}))
+    kri_harga_cf=forms.ChoiceField(
+        required=True, choices=PLANNING_CHOICES_WITH_TITLES,widget=forms.Select(attrs={'class':'form-control '}))
+    kri_isi_pao=forms.ChoiceField(
+        required=True, choices=PLANNING_CHOICES_WITH_TITLES,widget=forms.Select(attrs={'class':'form-control '}))
+    kri_isi_time=forms.ChoiceField(
+        required=True, choices=PLANNING_CHOICES_WITH_TITLES,widget=forms.Select(attrs={'class':'form-control '}))
+    kri_isi_cf=forms.ChoiceField(
+        required=True, choices=PLANNING_CHOICES_WITH_TITLES,widget=forms.Select(attrs={'class':'form-control '}))
+    kri_pao_time=forms.ChoiceField(
+        required=True, choices=PLANNING_CHOICES_WITH_TITLES,widget=forms.Select(attrs={'class':'form-control '}))
+    kri_pao_cf=forms.ChoiceField(
+        required=True, choices=PLANNING_CHOICES_WITH_TITLES,widget=forms.Select(attrs={'class':'form-control '}))
+    kri_time_cf=forms.ChoiceField(
+        required=True, choices=PLANNING_CHOICES_WITH_TITLES,widget=forms.Select(attrs={'class':'form-control '}))
+    class Meta:
+        model = Alternatif
+        fields = ('kri',)
+        widgets = {
+            'kri':forms.HiddenInput(),
+        }
+
